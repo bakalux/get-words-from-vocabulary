@@ -1,15 +1,16 @@
-var URL = "https://api.datamuse.com/words?ml=ringing+in+the+ears&max=25";
+var URL = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
 var dataAjax = function (data) {
     alert("Got data!");
-    console.log(data);
+    console.log(data.length);
+    var wordsArray = data.split("\n");
     for (var i = 0; i < 10; i++) {
-        console.log(data[i].word);
-        document.body.innerHTML += data[i].word + "<br>";
+        document.body.innerHTML += wordsArray[i] + "<br>";
     }
+
 };
 $.ajax({
     url: URL,
-    dataType: "json",
+    dataType: "text",
     success: dataAjax,
     error: function (error) {
         alert(error);
