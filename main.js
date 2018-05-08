@@ -3,10 +3,11 @@ var dataAjax = function (data) {
     alert("Got data!");
     console.log(data.length);
     var wordsArray = data.split("\n");
-    for (var i = 0; i < 10; i++) {
-        document.body.innerHTML += wordsArray[i] + "<br>";
+    var firstWords = "";
+    for (var i = 0; i < 1000; i++) {
+        firstWords += wordsArray[i] + " ";
     }
-
+    document.body.innerHTML += firstWords;
 };
 $.ajax({
     url: URL,
