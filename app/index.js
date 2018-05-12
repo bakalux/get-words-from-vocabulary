@@ -22,7 +22,7 @@ function getData() { //this will read file and send information to other functio
         if (err) {
             throw err;
         }
-        console.log('Loaded local data!');
+        console.log('Loaded domain zones!');
         intoArray(data);
     });
 }
@@ -40,6 +40,7 @@ function checkForDomainEnd(wordsArray) {
             }
         }
     }
+    console.log('Found ' + domainEndWords.length + ' domains');
     console.log('Domain words are');
     for (i = 0; i < domainEndWords.length; i++) {
         console.log(domainEndWords[i]);
@@ -47,7 +48,7 @@ function checkForDomainEnd(wordsArray) {
 }
 
 function dataAjax(data) {
-    console.log("Loaded remote data!");
+    console.log("Loaded vocabulary!");
     console.log("Computing data...");
     var wordsArray = data.split("\n");
     checkForDomainEnd(wordsArray);
