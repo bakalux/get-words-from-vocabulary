@@ -13,10 +13,9 @@ function getData() { //this will read file and send information to other functio
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
             var lines = xmlhttp.responseText; //*here we get all lines from text file*
-
             intoArray(lines); //here we call function with parameter "lines*"                   
         }
-    }
+    };
 
     xmlhttp.open("GET", "domain_zones.txt", true);
     xmlhttp.send();
@@ -54,11 +53,8 @@ var dataAjax = function (data) {
     checkForDomainEnd(wordsArray);
     console.log(wordsArray[10]);
     console.log(lineArr[50]);
-
-
-
-
 };
+
 
 $.ajax({
     url: URL,
