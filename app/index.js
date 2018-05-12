@@ -25,7 +25,7 @@ function checkForDomainEnd(wordsArray) {
         for (var j = 0; j < wordsArray.length; j++) {
             if (wordsArray[j].endsWith(lineArr[i]) && (wordsArray[j].length !== lineArr[i].length)) {
                 var wordWithDot = (wordsArray[j].substr(0, wordsArray[j].length - lineArr[i].length) + "." + lineArr[i]).toLowerCase();
-                domainEndWords += wordWithDot + " ";
+                domainEndWords += wordWithDot + "\n";
             }
         }
     }
