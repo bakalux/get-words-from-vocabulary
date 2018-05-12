@@ -3,6 +3,17 @@ var lineArr;
 var domainEndWords = [];
 
 getData('domain_zones.txt');
+var urlForDomains = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
+
+axios({
+        method: 'get',
+        url: urlForDomains,
+        responseType: 'text'
+    })
+    .then(function (response) {
+        dataAjax(response.data);
+    });
+
 
 function getData() { //this will read file and send information to other function
     var fs = require('fs');
@@ -11,6 +22,7 @@ function getData() { //this will read file and send information to other functio
         if (err) {
             throw err;
         }
+        console.log('Loaded local data!');
         intoArray(data);
     });
 }
@@ -34,27 +46,14 @@ function checkForDomainEnd(wordsArray) {
     }
 }
 
-
-var urlForDomains = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
-
 function dataAjax(data) {
-    console.log("Got data!");
-    console.log(data.length);
-    console.log(typeof data);
+    console.log("Loaded remote data!");
+    console.log("Computing data...");
     var wordsArray = data.split("\n");
     checkForDomainEnd(wordsArray);
 }
 
 
-axios({
-        method: 'get',
-        url: urlForDomains,
-        responseType: 'text'
-    })
-    .then(function (response) {
-        console.info(Object.getOwnPropertyNames(response));
-        dataAjax(response.data);
-    });
 
 /*
 var urlTopWords = 'https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english.txt';
