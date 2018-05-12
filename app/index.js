@@ -22,7 +22,7 @@ function intoArray(lines) {
 function checkForDomainEnd(wordsArray) {
     for (var i = 0; i < (lineArr.length - 1); i++) {
         for (var j = 0; j < wordsArray.length; j++) {
-            if (wordsArray[j].endsWith(lineArr[i]) && (wordsArray[j].length !== lineArr[i].length)) {
+            if (wordsArray[j].endsWith(lineArr[i]) && ((wordsArray[j].length - lineArr[i].length) > 0)) {
                 var wordWithDot = (wordsArray[j].substr(0, wordsArray[j].length - lineArr[i].length) + "." + lineArr[i]).toLowerCase();
                 domainEndWords.push(wordWithDot);
             }
@@ -33,7 +33,6 @@ function checkForDomainEnd(wordsArray) {
         console.log(domainEndWords[i]);
     }
 }
-
 
 
 var urlForDomains = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
