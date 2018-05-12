@@ -1,7 +1,8 @@
 var axios = require('axios');
 var lineArr;
-getData('domain_zones.txt');
+var domainEndWords = [];
 
+getData('domain_zones.txt');
 
 function getData() { //this will read file and send information to other function
     var fs = require('fs');
@@ -16,20 +17,21 @@ function getData() { //this will read file and send information to other functio
 
 function intoArray(lines) {
     lineArr = lines.split('\n');
-    console.log(lineArr[100]);
 }
-var domainEndWords = [];
 
 function checkForDomainEnd(wordsArray) {
     for (var i = 0; i < (lineArr.length - 1); i++) {
         for (var j = 0; j < wordsArray.length; j++) {
             if (wordsArray[j].endsWith(lineArr[i]) && (wordsArray[j].length !== lineArr[i].length)) {
                 var wordWithDot = (wordsArray[j].substr(0, wordsArray[j].length - lineArr[i].length) + "." + lineArr[i]).toLowerCase();
-                domainEndWords += wordWithDot + "\n";
+                domainEndWords.push(wordWithDot);
             }
         }
     }
-    console.log("domain words are " + domainEndWords);
+    console.log('Domain words are');
+    for (i = 0; i < domainEndWords.length; i++) {
+        console.log(domainEndWords[i]);
+    }
 }
 
 
