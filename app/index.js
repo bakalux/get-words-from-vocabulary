@@ -52,6 +52,17 @@ function dataAjax(data) {
     console.log("Computing data...");
     var wordsArray = data.split("\n");
     checkForDomainEnd(wordsArray);
+    writeInFile();
+}
+function writeInFile(){
+    var fs = require('fs');
+var stream = fs.createWriteStream("domains.txt");
+stream.once('open', function(fd) {
+    for (i = 0; i < domainEndWords.length; i++) {
+        stream.write(domainEndWords[i] + " \n");
+    }
+  stream.end();
+});
 }
 
 
