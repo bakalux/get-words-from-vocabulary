@@ -34,17 +34,18 @@ function intoArray(lines) {
 function checkForDomainEnd(wordsArray) {
     for (var i = 0; i < (lineArr.length - 1); i++) {
         for (var j = 0; j < wordsArray.length; j++) {
-            if (wordsArray[j].endsWith(lineArr[i]) && ((wordsArray[j].length - lineArr[i].length) > 0)) {
+            if (wordsArray[j].toLowerCase().endsWith(lineArr[i].toLowerCase()) && ((wordsArray[j].length - lineArr[i].length) > 0)) {
                 var wordWithDot = (wordsArray[j].substr(0, wordsArray[j].length - lineArr[i].length) + "." + lineArr[i]).toLowerCase();
                 domainEndWords.push(wordWithDot);
             }
         }
     }
-    console.log('Found ' + domainEndWords.length + ' domains');
+    
     console.log('Domain words are');
     for (i = 0; i < domainEndWords.length; i++) {
         console.log(domainEndWords[i]);
     }
+    console.log('Found ' + domainEndWords.length + ' domains');
 }
 
 function dataAjax(data) {
