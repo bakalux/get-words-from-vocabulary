@@ -1,9 +1,9 @@
 var axios = require('axios');
-var domainEndOtherWords = [];
-var domainZones = [];
-var wordsArray = [];
-var domainEndPopularWords = [];
-var urlForDomains = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
+let domainEndOtherWords = [];
+let domainZones = [];
+let wordsArray = [];
+let domainEndPopularWords = [];
+let urlForDomains = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt';
 getPopularWords();
 getData('domain_zones.txt');
 axios({
@@ -49,12 +49,14 @@ function checkForDomainEnd(wordsArray, finalDomains) {
 function dataAjax(data) {
     console.log("Loaded vocabulary!");
     wordsArray = data.split("\n");
+    console.log("Cutting popular words from vocabulary...");
+    wordsArray = wordsArray.filter(e => !popularWords.includes(e));
     console.log('Computing data for popular words');
     checkForDomainEnd(popularWords, domainEndPopularWords);
     writeInFile(domainEndPopularWords, 'popular_words_domains.txt');
-    /*console.log("Computing data for other words...");
+    console.log("Computing data for other words...");
     checkForDomainEnd(wordsArray, domainEndOtherWords);
-    writeInFile(domainEndOtherWords, "domains.txt");*/
+    writeInFile(domainEndOtherWords, "domains.txt");
 }
 
 function writeInFile(finalDomains, domainsFile) {
