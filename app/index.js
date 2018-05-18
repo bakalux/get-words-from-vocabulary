@@ -51,12 +51,12 @@ function dataAjax(data) {
     wordsArray = data.split("\n");
     console.log("Cutting popular words from vocabulary...");
     wordsArray = wordsArray.filter(e => !popularWords.includes(e));
-    console.log('Computing data for popular words');
+    console.log('Computing data for popular word');
     checkForDomainEnd(popularWords, domainEndPopularWords);
-    writeInFile(domainEndPopularWords, 'popular_words_domains.txt');
     console.log("Computing data for other words...");
     checkForDomainEnd(wordsArray, domainEndOtherWords);
     writeInFile(domainEndOtherWords, "domains.txt");
+    writeInFile(domainEndPopularWords, 'domains.txt');
 }
 
 function writeInFile(finalDomains, domainsFile) {
